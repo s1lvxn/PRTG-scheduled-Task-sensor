@@ -16,10 +16,8 @@ Since PRTG doesn't provide a built-in sensor for this, this script was created t
 
 The script requires two parameters:
 
-```
 -server     # Remote host (use %host in PRTG)
 -taskname   # Name of the scheduled task (as shown in Task Scheduler)
-```
 
 Example in PRTG sensor settings:
 
