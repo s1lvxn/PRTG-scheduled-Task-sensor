@@ -1,59 +1,58 @@
-# PRTG-scheduled-Task-sensor
-Scheduled Task Sensor for PRTG
-This PowerShell script allows you to monitor Windows Scheduled Tasks remotely with PRTG Network Monitor.
+# Scheduled Task Sensor for PRTG
+
+This PowerShell script allows you to monitor Windows Scheduled Tasks remotely with **PRTG Network Monitor**.
 
 Since PRTG doesn't provide a built-in sensor for this, this script was created to fill that gap. It's simple, lightweight, and integrates easily into your monitoring setup.
 
-Features:
-Monitor any scheduled task on a remote server
+## ✅ Features
 
-Works as a Custom EXE/Script Advanced sensor in PRTG
+- Monitor any scheduled task on a **remote server**
+- Works as a **Custom EXE/Script Advanced** sensor in PRTG
+- Detects task status based on `LastTaskResult`
+- Returns clean XML output for PRTG
+- Includes **lookup file** for human-readable alerts
 
-Detects task status based on LastTaskResult
+## 🔧 Parameters
 
-Returns clean XML output for PRTG
-
-Includes lookup file for human-readable alerts
-
-Parameters:
 The script requires two parameters:
 
-powershell
-Kopieren
-Bearbeiten
+```
 -server     # Remote host (use %host in PRTG)
 -taskname   # Name of the scheduled task (as shown in Task Scheduler)
+```
+
 Example in PRTG sensor settings:
 
-perl
-Kopieren
-Bearbeiten
+```
 -server %host -taskname "DailyBackup"
-📦 Files Included
-scheduledTask_sensor.ps1 – PowerShell script
+```
 
-scheduled.task.lookup.ovl – PRTG value lookup file
+## 📦 Files Included
 
-🔌 PRTG Setup
-Add a EXE/Script Advanced sensor to your device in PRTG.
+- `scheduledTask_sensor.ps1` – PowerShell script
+- `scheduled.task.lookup.ovl` – PRTG value lookup file
 
-Upload the script to your \Custom Sensors\EXE folder.
+## 🔌 PRTG Setup
 
-Set parameters like: -server %host -taskname "YourTask"
+1. Add a **EXE/Script Advanced** sensor to your device in PRTG.
+2. Upload the script to the folder:  
+   `C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\EXE\`
+3. Set the parameters:  
+   `-server %host -taskname "YourTaskName"`
+4. Copy the lookup file `scheduled.task.lookup.ovl` to:  
+   `C:\Program Files (x86)\PRTG Network Monitor\lookups\custom\`
+5. Reload lookups in PRTG under:  
+   `Setup > System Administration > Administrative Tools > Load Lookups`
+6. In the sensor's **channel settings**, enable:
+   - "Enable alerting based on lookups"
+   - Select `scheduled.task.lookup` from the list
 
-Copy the .ovl lookup file into:
-C:\Program Files (x86)\PRTG Network Monitor\lookups\custom\
+## 📘 Notes
 
-Reload lookups in PRTG via:
-Setup > System Administration > Administrative Tools > Load Lookups
+- The script checks the **last result code** of the task, not the current state.
+- You can expand the script to return additional channels like task state if needed.
 
-In the sensor’s channel settings, enable lookup usage and assign scheduled.task.lookup.
+## 💬 Feedback
 
-📘 Notes
-The script checks the last task result code, not the real-time running state.
-
-Extendable: You can modify the script to also return the task’s current state if needed.
-
-💬 Feedback
-Feel free to fork, improve, or open issues.
-Feedback and contributions are welcome!
+Feel free to fork, improve, or open an issue.  
+Feedback and contributions are always welcome!
