@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <ValueLookup id="scheduled.task.lookup" desiredValue="0" undefinedState="Warning">
+    <Lookups>
+      <SingleInt state="OK" value="0">
+        Completed Successfully
+      </SingleInt>
+      <SingleInt state="OK" value="1">
+        Currently Running
+      </SingleInt>
+      <SingleInt state="Error" value="2">
+        Error
+      </SingleInt>
+    </Lookups>
+  </ValueLookup>
